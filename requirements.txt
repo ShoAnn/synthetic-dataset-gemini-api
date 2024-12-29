@@ -13,7 +13,6 @@ grpcio==1.68.1
 grpcio-status==1.68.1
 httplib2==0.22.0
 idna==3.10
-Jinja2==3.1.5
 MarkupSafe==3.0.2
 numpy==2.2.1
 pandas==2.2.3
@@ -30,6 +29,7 @@ pytz==2024.2
 requests==2.32.3
 rsa==4.9
 six==1.17.0
+tabulate==0.9.0
 tqdm==4.67.1
 typing_extensions==4.12.2
 tzdata==2024.2
