@@ -1,2 +1,6 @@
 .env
-gemini
+gemini/
+*.pyc
+*.so
+*.egg-info
+.pytest_cache
