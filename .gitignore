@@ -1,5 +1,5 @@
 .env
-gemini/
+venv/
 *.pyc
 *.so
 *.egg-info
