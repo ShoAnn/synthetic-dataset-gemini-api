@@ -1,32 +1,32 @@
 import os
 from dotenv import load_dotenv
-import pandas as pd
-import ast
+from models.llm_client import GeminiClient
 from utils.data_processing import Dataset
-import google.generativeai as genai
-from time import sleep
-from tqdm import tqdm
-
-
-def extractText(listDicts):
-    result = ''
-    for i in listDicts:
-        result += f'{i["id"]}: {i["text"]}\n'
-    return result
-
-def main():
+from tasks.recreate_from_ref import RecreateFromReference
 
 if __name__=='__main__':
-    load_dotenv()
-    df = pd.read_csv('~/project/python/gemini-api-synth-dataset/dataset/clean_v0.3_1118_unclass-only_formatted-lb.csv')
-    dataset = Dataset(df)
-    # dataset.applySliceEnd('long_answer', ['Referensi:', 'Dasar Hukum:'])
-    # dataset.applyFormatLb('legal_basis')
-
-    genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    dataset_df = Dataset('~/project/python/gemini-api-synth-dataset/dataset/clean_v0.3_1118_final.csv', **{'index_col':0})
     
-    SLEEP_INTERVAL = 15
-    SLEEP_DURATION = 60  # seconds
+### this should go in test, ik ###
 
+    load_dotenv()
+    client = GeminiClient(
+        my_api_key=os.getenv('GOOGLE_API_KEY'),
+        rate_limit=15
+    )
 
+    # Task specific
+    task = RecreateFromReference(
+        client=client,
+        ref_df=dataset_df
+    )
+
+    prompts = task.build_prompt_list(
+        column_document='long_answer',
+        column_ref='legal_basis'
+    )
+
+    output_df = task.recreate(
+        prompts=prompts,
+        column_target='fulltext'
+    )

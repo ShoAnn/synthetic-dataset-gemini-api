@@ -1,8 +1,9 @@
 import ast
+import pandas as pd
 
 class Dataset:
-    def __init__(self, data):
-        self.data = data
+    def __init__(self, data_path, **kwargs):
+        self.data = pd.read_csv(data_path, **kwargs)
 
     @staticmethod
     def sliceEnd(text, strToFind):
