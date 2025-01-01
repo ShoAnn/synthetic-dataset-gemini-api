@@ -1,7 +1,7 @@
 ## Use the gemini api to make synthetic dataset
 
 ### tasks
-1. try recreate an original text from a reference and the cited passage.
+1. try to recreate the original text from a reference and the passage citing that reference.
 
 
 ### todo
