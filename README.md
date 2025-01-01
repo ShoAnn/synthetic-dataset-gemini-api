@@ -5,5 +5,4 @@
 
 
 ### todo
-write tests
-add more tasks
+write tests and add more tasks
