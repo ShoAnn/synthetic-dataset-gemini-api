@@ -1,1 +1,9 @@
-fill a column of a dataset by extracting/summarizing from the content of other column using gemini api
+## Use the gemini api to make synthetic dataset
+
+### tasks
+1. try recreate an original text from a reference and the cited passage.
+
+
+### todo
+write tests
+add more tasks
